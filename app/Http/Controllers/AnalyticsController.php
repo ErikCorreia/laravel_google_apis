@@ -9,33 +9,29 @@ use App\Http\Controllers\AuthController\GoogleAuthController;
 
 class AnalyticsController extends Controller
 {
-    public function index()
+    static function index()
     {
-        {
-            session_start();
-    
-            // if(!$_SESSION['access_token']) {
-            //     GoogleAuthController::authentication();
-            // }else{
-            //     echo 'ok';
-            //     header('Location: /analytics/data');
-            //     exit;
-            // }
+        // session_start();
 
-            // $analyticsDataPerformQuery = Analytics::performQuery(
-            //     Period::years(1),
-            //     'ga:sessions',
-            //     [
-            //         'metrics' => 'ga:sessions, ga:pageviews',
-            //         'dimensions' => 'ga:yearMonth'
-            //     ]
-            // );
+        // if(!$_SESSION['access_token']) {
+        //     GoogleAuthController::authentication();
+        // }else{
+        //     echo 'ok';
+        //     header('Location: /analytics/data');
+        //     exit;
+        // }
 
-            $a = Analytics::fetchMostVisitedPages(Period::days(7));
+        // $analyticsDataPerformQuery = Analytics::performQuery(
+        //     Period::years(1),
+        //     'ga:sessions',
+        //     [
+        //         'metrics' => 'ga:sessions, ga:pageviews',
+        //         'dimensions' => 'ga:yearMonth'
+        //     ]
+        // );
 
-    
-            echo '<pre>';
-            print_r($a);
-        }
+        $analysis = Analytics::fetchMostVisitedPages(Period::days(7));
+
+        return $analysis;
     }
 }

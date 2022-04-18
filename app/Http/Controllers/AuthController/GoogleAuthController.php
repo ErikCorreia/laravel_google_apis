@@ -20,17 +20,16 @@ class GoogleAuthController extends Controller
             
             if (!isset($_GET['code'])) {
                 
-                $redirect_uri = 'http://127.0.0.1:8000/gconsolesearch';
+                $redirect_uri = 'http://127.0.0.1:8000/auth';
                 $auth_url = $client->createAuthUrl();
                 header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
                 
             } else {
-                
                 session_start();
 
                 $client->authenticate($_GET['code']);
                 $_SESSION['access_token'] = $client->getAccessToken();
-                $redirect_uri = 'http://127.0.0.1:8000/gconsolesearch/data';
+                $redirect_uri = 'http://127.0.0.1:8000/auth';
                 header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 
             }

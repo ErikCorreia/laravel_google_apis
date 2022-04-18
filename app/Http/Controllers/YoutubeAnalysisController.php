@@ -7,10 +7,9 @@ use Alaouy\Youtube\Facades\Youtube;
 
 class YoutubeAnalysisController extends Controller
 {
-    public function index()
+    static function index()
     {
         $channel = Youtube::getChannelByName('maxmrm');
-        echo '<pre>';
-        print_r($channel);
+        return $channel;
     }
 }

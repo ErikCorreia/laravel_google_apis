@@ -10,66 +10,50 @@ use Carbon\Carbon;
 
 class SearchConsoleController extends Controller
 {
+    static $sites;
 
-    public function index()
+    static function index()
     {
 
-
         if(!isset($_SESSION['access_token'])) {
-            if(isset($_GET['code'])){
-                
-                GoogleAuthController::authentication();
-            } else{
+            // die(print_r($_GET) . '<small style="color: red"> stap 2 </small>');
+            GoogleAuthController::authentication();
 
-                GoogleAuthController::authentication();
-            }
+            // if(isset($_GET['code'])){
+            // }
+            
+            // die(print_r($_GET));
+            // if(isset($_GET['code'])){
+            // } else{
+            //     GoogleAuthController::authentication();
+            // }
 
         }else{
-            header('Location: /gconsolesearch/data');
+            header('Location: http://127.0.0.1:8000/auth');
             exit;
         }
 
     }
 
-    public function showData()
+    static function showData()
     {
-
-        session_start();
+        if(!isset($_SESSION)){
+            session_start();
+        };
 
         try{
             if(isset($_SESSION['access_token'])) {
-                // echo '<pre>';
-                // die(print_r($_SESSION));
-                // echo '</pre><hr>';
-                $token =  $_SESSION['access_token']['access_token'];
 
-                $sites = SearchConsole::setAccessToken($token)->listSites();
+                $token =  $_SESSION['access_token']['access_token'];
+                self::$sites = SearchConsole::setAccessToken($token)->listSites();
     
-                // $oticacristalData = SearchConsole::setAccessToken($token)->setQuotaUser('uniqueQuotaUserString')
-                // ->searchAnalyticsQuery(
-                //     'https://oticacristal.com/',
-                //     SearchConsolePeriod::create(Carbon::now()->subDays(30), Carbon::now()->subDays(2)),
-                //     ['query', 'page', 'country', 'device', 'date'],
-                //     [['dimension' => 'query', 'operator' => 'notContains', 'expression' => 'cheesecake']],
-                //     1000,
-                //     'web',
-                //     'all',
-                //     'auto'
-                // );
-    
-                echo '<pre>';
-                print_r($sites);
-                echo '</pre><hr>';
-                
-                // echo '<pre>';
-                // print_r($oticacristalData);
-                // echo '</pre><hr>';
             }
 
         }catch(\Google\Service\Exception $e){
 
+            //talvez isso gere um loop resultando em um erro "to many request"
             if($e->getMessage()){
-                // die($e->getMessage());
+
                 session_destroy();
 
                 echo '<h3 style="color: red">Token invalido</h3>';
@@ -80,9 +64,9 @@ class SearchConsoleController extends Controller
 
             }
             
-
         }
-
+        
+        return self::$sites;
     }
 
 }
