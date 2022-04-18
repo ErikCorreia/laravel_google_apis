@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SearchConsole;
 use App\Http\Controllers\AuthController\GoogleAuthController;
-use SchulzeFelix\SearchConsole\Period as SearchConsolePeriod;
+use SchulzeFelix\SearchConsole\Period as searchConsolePeriod;
 use Carbon\Carbon;
+use DatePeriod;
+use Google_Service_Webmasters_SearchAnalyticsQueryRequest;
+
 
 class SearchConsoleController extends Controller
 {
     static $sites;
+    // static $siteData;
 
     static function index()
     {
@@ -45,7 +49,21 @@ class SearchConsoleController extends Controller
             if(isset($_SESSION['access_token'])) {
 
                 $token =  $_SESSION['access_token']['access_token'];
-                self::$sites = SearchConsole::setAccessToken($token)->listSites();
+                // self::$sites = SearchConsole::setAccessToken($token)->listSites();
+                self::$sites = SearchConsole::setAccessToken($token)->setQuotaUser('oticacristal.com.br/')->listSites();
+                // self::$sites = SearchConsole::getWebmastersService();
+
+                // self::$siteData = SearchConsole::setAccessToken($token)->setQuotaUser('uniqueQuotaUserString')
+                // ->searchAnalyticsQuery(
+                //     'https://oticacristal.com',
+                //     searchConsolePeriod::create(Carbon::now()->subDays(30), Carbon::now()->subDays(2)),
+                //     ['query', 'page', 'country', 'device', 'date'],
+                //     [['dimension' => 'query', 'operator' => 'notContains', 'expression' => 'cheesecake']],
+                //     1000,
+                //     'web',
+                //     'all',
+                //     'auto'
+                // );
     
             }
 
@@ -67,6 +85,7 @@ class SearchConsoleController extends Controller
         }
         
         return self::$sites;
+        // die(var_dump(self::$siteData));
     }
 
 }
