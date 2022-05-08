@@ -37,6 +37,7 @@
 
             .G-icon{
                 animation: rotate 1s ease-out;
+                animation-delay: .5s;
             }
 
             @keyframes rotate{
@@ -82,23 +83,7 @@
                         <!-- bloco 1 -->
                         <div class="bloco p-6">
                             <div class="flex items-center">
-                            <svg width="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">  <image id="image0" width="64" height="64" x="0" y="0"
-                                href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
-                                AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAllBMVEX///97e3t7e3t7e3t7
-                                e3vW1tbW1tbQ0dLQ0dLMzMzMzMzu7+/m5ubu7+/m5uZaWlp7e3vW1tbR0tLQ0dLMzMyOsuZZl/FH
-                                jvVFjPVVkvCJrOKFruiAp+R5qvGXu+/m5ua9xtTu7+////+9vb309PRQUFBxcXGGhoatra2Tk5PI
-                                yMhOTk61tbWcnJynp6dpaWne3t5mZmYRSBB7AAAAD3RSTlMAEcyZqjPu7jMz7t3dVVVfqmWGAAAA
-                                AWJLR0QAiAUdSAAAAAd0SU1FB+YEEgUDBV7VDkwAAAGQSURBVFjD7dTbcoIwFAVQtRfrpU2KtNKL
-                                pSUJiFHb/v/PNSeABgwhh6dO635gzjDZy5gxDgbnnNOa4Yg0coHs0yZAMYLqnwL0cugNqL4FoCNv
-                                QC2mPu/+IHB1fd9IUGVhZnzj228BWgRLvw2wCs5+E7AItr4DWIwnHn0XsJhOuvtOIKwJZf/hcVlL
-                                ZM3TswbCqQEU/ZelT1/lVQPhCaA6q7dV+XABke5bgTiOy4erH737AI6+YwfHrxD1AzrPzxOIuoCw
-                                AXzoJN6JdX4nUL8I5XLGqwEB6CukF3MqWFz0BOW+QHAAeCoEKwUhUu4FVJcY1mYCgEJQI+0Gjn8C
-                                AASiALQA89oNBLWoF3kFgABzusEB5AAoAWbCNihAHAEWwyzXSvAHdEdsC2ALfbljbIPdAcmAyAj0
-                                5R72gjwDReQ50Z8vJcMBmTAC/RQJBI2+zJFAQuv9T4YFODH7ZI0Gkq9vo79nHYAtfFf16Zb1AeDH
-                                oPuSsZ6AlF3AzH4G1TnYgbkB3PYB7gamMMMC81r/nP+eH9T25ljLVV10AAAAJXRFWHRkYXRlOmNy
-                                ZWF0ZQAyMDIyLTA0LTE4VDAyOjAzOjA1KzAzOjAw9Pd4nQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAy
-                                Mi0wNC0xOFQwMjowMzowNSswMzowMIWqwCEAAAAASUVORK5CYII=" />
-                            </svg>
+                            <svg width="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve"><image id="image0" width="64" height="64" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAABGdBTUEAALGPC/xhBQAAACBjSFJN AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAllBMVEX///97e3t7e3t7e3t7 e3vW1tbW1tbQ0dLQ0dLMzMzMzMzu7+/m5ubu7+/m5uZaWlp7e3vW1tbR0tLQ0dLMzMyOsuZZl/FH jvVFjPVVkvCJrOKFruiAp+R5qvGXu+/m5ua9xtTu7+////+9vb309PRQUFBxcXGGhoatra2Tk5PI yMhOTk61tbWcnJynp6dpaWne3t5mZmYRSBB7AAAAD3RSTlMAEcyZqjPu7jMz7t3dVVVfqmWGAAAA AWJLR0QAiAUdSAAAAAd0SU1FB+YEEgUDBV7VDkwAAAGQSURBVFjD7dTbcoIwFAVQtRfrpU2KtNKL pSUJiFHb/v/PNSeABgwhh6dO635gzjDZy5gxDgbnnNOa4Yg0coHs0yZAMYLqnwL0cugNqL4FoCNv QC2mPu/+IHB1fd9IUGVhZnzj228BWgRLvw2wCs5+E7AItr4DWIwnHn0XsJhOuvtOIKwJZf/hcVlL ZM3TswbCqQEU/ZelT1/lVQPhCaA6q7dV+XABke5bgTiOy4erH737AI6+YwfHrxD1AzrPzxOIuoCw AXzoJN6JdX4nUL8I5XLGqwEB6CukF3MqWFz0BOW+QHAAeCoEKwUhUu4FVJcY1mYCgEJQI+0Gjn8C AASiALQA89oNBLWoF3kFgABzusEB5AAoAWbCNihAHAEWwyzXSvAHdEdsC2ALfbljbIPdAcmAyAj0 5R72gjwDReQ50Z8vJcMBmTAC/RQJBI2+zJFAQuv9T4YFODH7ZI0Gkq9vo79nHYAtfFf16Zb1AeDH oPuSsZ6AlF3AzH4G1TnYgbkB3PYB7gamMMMC81r/nP+eH9T25ljLVV10AAAAJXRFWHRkYXRlOmNy ZWF0ZQAyMDIyLTA0LTE4VDAyOjAzOjA1KzAzOjAw9Pd4nQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAy Mi0wNC0xOFQwMjowMzowNSswMzowMIWqwCEAAAAASUVORK5CYII=" /></svg>
                                 <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Google Search Console API</div>
                             </div>
 
@@ -177,8 +162,8 @@
                                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
 
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Laravel Framework
+                            <a href="https://laravel.com" class="ml-1 underline">
+                                Laravel Documentation
                             </a>
 
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
