@@ -2,36 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use Analytics;
 use Illuminate\Http\Request;
 use Spatie\Analytics\Period;
-use App\Http\Controllers\AuthController\GoogleAuthController;
+use Spatie\Analytics\AnalyticsFacade as Analytics;
+use Illuminate\Support\Facades\Config;
+use Carbon\Carbon;
 
 class AnalyticsController extends Controller
 {
-    static function index()
+    private $period;
+    private $analytics = [];
+
+    public function setIndex($siteId){
+        
+        try{
+             //seta o valor de view_id em config/analytics.php com o valor passado na url
+            Config::set('analytics.view_id', $siteId);
+
+            $startDate = isset($_GET['startdate']) ? Carbon::createFromFormat('d-m-Y', $_GET['startdate']) : Carbon::now()->subDays(30);
+            $endDate = isset($_GET['enddate']) ? Carbon::createFromFormat('d-m-Y', $_GET['enddate']) : Carbon::now();
+            $this->period = Period::create($startDate, $endDate);
+            
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+        
+    }
+    public function getAllAnalytics()
     {
-        // session_start();
 
-        // if(!$_SESSION['access_token']) {
-        //     GoogleAuthController::authentication();
-        // }else{
-        //     echo 'ok';
-        //     header('Location: /analytics/data');
-        //     exit;
-        // }
+        try {
 
-        // $analyticsDataPerformQuery = Analytics::performQuery(
-        //     Period::years(1),
-        //     'ga:sessions',
-        //     [
-        //         'metrics' => 'ga:sessions, ga:pageviews',
-        //         'dimensions' => 'ga:yearMonth'
-        //     ]
-        // );
+            $this->analytics = [
+                    'most_visited_pages' =>[
+                        'results' => Analytics::fetchMostVisitedPages($this->period),
+                    ],
 
-        $analysis = Analytics::fetchMostVisitedPages(Period::days(7));
+                    'total_visitors_and_page_views' => [
+                        'results' => Analytics::fetchUserTypes($this->period),
+                    ],
 
-        return $analysis;
+                    'site_reference' => [
+                        // 'mesage' => 'Results between: ' . $startDate->format('d-m-Y') . ' and ' . $endDate->format('d-m-Y'),
+                        'results' => Analytics::fetchTopReferrers($this->period),
+                    ],
+                ];
+
+                // echo '<pre>';
+                // die(var_dump($this->analytics));
+                return $this->analytics;
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
